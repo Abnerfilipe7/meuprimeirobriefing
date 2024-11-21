@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ipaba´s Tech</title>
+    <link rel="stylesheet" href="montagem.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+</head>
+
+<body class="bg-yellow">
+    <header>
+        <nav class="navbar navbar-expand-lg" style="height: 80px;" id= "barra">
+            <div class="container-fluid" style="background-color: rgba(78, 3, 3, 0);">
+                <img src="imagens/Ipaba’s.png"  width="30" height="30" alt="Logo" class="bi bi-bag">
+                <a class="navbar-brand" style="color: aliceblue;" href="home.html"><STRong>Ipaba's Tech</STRong></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="barra">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="color: aliceblue;">
+                        <li class="nav-item">
+                            <a class="nav-link active " style="color: aliceblue;" aria-current= "page" href="mont.html"></i> <strong>Montagem</strong></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: aliceblue;" href="pc.html"> <strong>Peças</strong></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" style="color: aliceblue;" href="" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <strong>Manutenção</strong>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="pesquisar">
+                        
+                        <input class="form-control me-2" type="pesquisar" placeholder="Pesquisar" aria-label="Pesquisar">
+                      
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Monte seu Computador</h1>
+
+        <div class="component">
+            <label for="cpu">Processador (CPU):</label>
+            <select id="cpu">
+                <option value="1200">Intel Core i5 - R$1200</option>
+                <option value="1800">Intel Core i7 - R$1800</option>
+                <option value="1000">AMD Ryzen 5 - R$1000</option>
+                <option value="1500">AMD Ryzen 7 - R$1500</option>
+            </select>
+        </div>
+
+        <div class="component">
+            <label for="gpu">Placa de Vídeo (GPU):</label>
+            <select id="gpu">
+                <option value="1200">NVIDIA GTX 1660 - R$1200</option>
+                <option value="2200">NVIDIA RTX 3060 - R$2200</option>
+                <option value="900">AMD RX 580 - R$900</option>
+                <option value="1800">AMD RX 6700 XT - R$1800</option>
+            </select>
+        </div>
+
+        <div class="component">
+            <label for="ram">Memória RAM:</label>
+            <select id="ram">
+                <option value="300">8GB DDR4 - R$300</option>
+                <option value="500">16GB DDR4 - R$500</option>
+                <option value="900">32GB DDR4 - R$900</option>
+            </select>
+        </div>
+
+        <div class="component">
+            <label for="storage">Armazenamento:</label>
+            <select id="storage">
+                <option value="200">SSD 256GB - R$200</option>
+                <option value="400">SSD 512GB - R$400</option>
+                <option value="300">HDD 1TB - R$300</option>
+                <option value="600">SSD 1TB - R$600</option>
+            </select>
+        </div>
+
+        <div class="component">
+            <label for="power_supply">Fonte de Alimentação:</label>
+            <select id="power_supply">
+                <option value="200">500W - R$200</option>
+                <option value="300">650W - R$300</option>
+                <option value="400">750W - R$400</option>
+                <option value="500">850W - R$500</option>
+            </select>
+        </div>
+
+        <button onclick="montarPC()">Montar PC</button>
+        <button onclick="calcularPrecoTotal()">Ver Preço Total</button>
+
+        <div id="resultado" style="margin-top: 20px;"></div>
+    </div>
+
+    <script>
+        function montarPC() {
+            const cpu = document.getElementById("cpu").selectedOptions[0].text;
+            const gpu = document.getElementById("gpu").selectedOptions[0].text;
+            const ram = document.getElementById("ram").selectedOptions[0].text;
+            const storage = document.getElementById("storage").selectedOptions[0].text;
+            const powerSupply = document.getElementById("power_supply").selectedOptions[0].text;
+
+            const configuracao = `
+                <h3>Configuração do PC:</h3>
+                <ul>
+                    <li><strong>Processador:</strong> ${cpu}</li>
+                    <li><strong>Placa de Vídeo:</strong> ${gpu}</li>
+                    <li><strong>Memória RAM:</strong> ${ram}</li>
+                    <li><strong>Armazenamento:</strong> ${storage}</li>
+                    <li><strong>Fonte de Alimentação:</strong> ${powerSupply}</li>
+                </ul>
+            `;
+
+            document.getElementById("resultado").innerHTML = configuracao;
+        }
+
+        function calcularPrecoTotal() {
+            const cpuPreco = parseFloat(document.getElementById("cpu").value);
+            const gpuPreco = parseFloat(document.getElementById("gpu").value);
+            const ramPreco = parseFloat(document.getElementById("ram").value);
+            const storagePreco = parseFloat(document.getElementById("storage").value);
+            const powerSupplyPreco = parseFloat(document.getElementById("power_supply").value);
+
+            const precoTotal = cpuPreco + gpuPreco + ramPreco + storagePreco + powerSupplyPreco;
+
+            document.getElementById("resultado").innerHTML += `
+                <h3>Preço Total: R$ ${precoTotal.toFixed(2)}</h3>
+            `;
+        }
+    </script>
+
+    <footer>
+        <p>&copy; 2024 Ipaba´s Tech.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
